@@ -34,7 +34,7 @@ tr:last-child td{border-bottom:0}
 .soon{color:var(--muted);font-size:14px}
 td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white-space:nowrap}
 .note{margin-top:48px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
-@media (max-width:640px){th:nth-child(3),td:nth-child(3){display:none}}
+@media (max-width:640px){table.days th:nth-child(3),table.days td:nth-child(3){display:none}table.days td a{display:block;margin:2px 0}th,td{padding:12px 10px}}
 </style>
 </head>
 <body>
@@ -55,21 +55,38 @@ td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white
   </div>
 
   <h2>날짜별 자료</h2>
-  <table>
+  <table class="days">
     <thead><tr><th>일차</th><th>주제</th><th>영역</th><th>실습</th></tr></thead>
     <tbody>
       <tr><td class="d">Day 1</td><td>파일 열기와 첫 탐색 6종</td><td><span class="tag" style="background:var(--a)">분석</span></td>
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day01_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day01_solution.ipynb">해설</a></td></tr>
       <tr><td class="d">Day 2</td><td>원하는 행만 골라내기: 조건 필터, 행·열 삭제, 그룹 비교</td><td><span class="tag" style="background:var(--a)">분석</span></td>
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day02_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day02_solution.ipynb">해설</a></td></tr>
-      <tr><td class="d">Day 3</td><td>더러운 데이터 세탁: 결측치, 이상치, 인코딩, 스케일링</td><td><span class="tag" style="background:var(--p)">전처리</span></td>
+      <tr><td class="d">Day 3</td><td>더러운 데이터 세탁: 결측치, 이상치(drop · reset_index), 값 바꾸기, 인코딩</td><td><span class="tag" style="background:var(--p)">전처리</span></td>
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day03_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day03_solution.ipynb">해설</a></td></tr>
       <tr><td class="d">Day 4</td><td>그래프로 말하기: countplot, histplot, boxplot, jointplot, heatmap, subplots</td><td><span class="tag" style="background:var(--a)">분석</span></td>
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day04_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day04_solution.ipynb">해설</a></td></tr>
-      <tr><td class="d">Day 5</td><td>머신러닝 4단계와 GridSearchCV</td><td><span class="tag" style="background:var(--m)">모델링</span></td><td class="soon">곧 추가</td></tr>
+      <tr><td class="d">Day 5</td><td>데이터 분리 · 스케일링 · 머신러닝과 GridSearchCV</td><td><span class="tag" style="background:var(--m)">모델링</span></td><td class="soon">곧 추가</td></tr>
       <tr><td class="d">Day 6</td><td>딥러닝과 학습 곡선</td><td><span class="tag" style="background:var(--m)">모델링</span></td><td class="soon">곧 추가</td></tr>
       <tr><td class="d">Day 7</td><td>1주차 총정리와 자주 하는 실수</td><td><span class="tag" style="background:var(--m)">모델링</span></td><td class="soon">곧 추가</td></tr>
       <tr><td class="d">Day 8~14</td><td>영역별 드릴, 모의고사 3회, 코드 빈칸 암기</td><td><span class="tag" style="background:var(--ink)">실전</span></td><td class="soon">곧 추가</td></tr>
+    </tbody>
+  </table>
+
+  <h2>공식 샘플문항 대응표</h2>
+  <p>AICE 홈페이지에 공개된 Associate 샘플문항(분류형, 14문항)에서 쓰는 함수가 어느 날 나오는지 정리했습니다. 문항 내용은 옮기지 않고 함수만 적었습니다.</p>
+  <table>
+    <thead><tr><th>문항</th><th>형식</th><th>핵심 함수</th><th>배우는 날</th></tr></thead>
+    <tbody>
+      <tr><td>1~2</td><td>직접 작성</td><td>import 별칭, read_csv, head</td><td class="d">Day 1</td></tr>
+      <tr><td>3</td><td>빈칸</td><td>subplots(nrows, ncols), ax=axes[0], set_title, histplot hue</td><td class="d">Day 4</td></tr>
+      <tr><td>4</td><td>직접 작성</td><td>boxplot</td><td class="d">Day 4</td></tr>
+      <tr><td>5</td><td>빈칸</td><td>IQR 울타리, drop(…index, axis=0), reset_index</td><td class="d">Day 3</td></tr>
+      <tr><td>6</td><td>빈칸</td><td>isnull().sum(), dropna</td><td class="d">Day 3</td></tr>
+      <tr><td>7</td><td>빈칸 + 오류 정정</td><td>loc + isin 으로 값 바꾸기, value_counts, drop axis=1, get_dummies, info</td><td class="d">Day 3</td></tr>
+      <tr><td>8~9</td><td>직접 작성 · 오류 정정</td><td>train_test_split(stratify), StandardScaler(검증은 transform)</td><td class="d">Day 5</td></tr>
+      <tr><td>10~12</td><td>직접 작성 · 오류 정정</td><td>GridSearchCV, best_estimator_, feature_importances_, accuracy_score</td><td class="d">Day 5</td></tr>
+      <tr><td>13~14</td><td>빈칸 · 직접 작성</td><td>Sequential, Dense, Dropout, EarlyStopping(patience), to_categorical, 학습 곡선</td><td class="d">Day 6</td></tr>
     </tbody>
   </table>
 

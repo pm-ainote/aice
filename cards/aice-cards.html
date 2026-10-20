@@ -67,6 +67,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
 header { display: flex; flex-direction: column; gap: 6px; }
+.home { font-size: 14px; color: var(--muted); text-decoration: none; padding: 4px 0; }
+.home:hover { text-decoration: underline; }
 .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: var(--accent-text); }
 h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 7vw, 52px); line-height: 1.15; margin: 0; text-wrap: balance; }
 .lead { margin: 0; color: var(--muted); max-width: 52ch; }
@@ -144,6 +146,7 @@ footer p { margin: 0; }
 
 <main>
   <header>
+    <a class="home" href="../">← 실습 자료 홈</a>
     <div class="eyebrow">AICE ASSOCIATE · 2주 합격 플랜</div>
     <h1>AICE 2주 합격 암기카드</h1>
     <p class="lead">빈칸을 채워 말해 보고 카드를 뒤집어 확인한다. 알았다를 누르면 다음 날, 3일 뒤, 7일 뒤에 다시 나온다.</p>

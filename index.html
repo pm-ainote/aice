@@ -40,7 +40,7 @@ tr:last-child td{border-bottom:0}
 .soon{color:var(--muted);font-size:14px}
 td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white-space:nowrap}
 .note{margin-top:48px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
-@media (max-width:640px){table.days th:nth-child(3),table.days td:nth-child(3){display:none}table.days td a{display:block;margin:2px 0;white-space:normal;padding:6px 0}table.days td.d{white-space:normal}th,td{padding:12px 10px}}
+@media (max-width:640px){table.days th:nth-child(3),table.days td:nth-child(3){display:none}table.days td a{display:block;margin:2px 0;white-space:normal;padding:6px 0}td.d{white-space:normal}td{overflow-wrap:anywhere}th,td{padding:12px 10px}}
 </style>
 </head>
 <body>
@@ -87,12 +87,15 @@ td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white
           <td><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day10_problem.ipynb">문제 · 코랩에서 열기</a><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day10_solution.ipynb">해설</a></td></tr>
       <tr><td class="d">Day 11</td><td>모의고사 1회: 통신사 고객 이탈 14문항 (90분 타이머로 먼저 풀기)</td><td><span class="tag" style="background:var(--x)">실전</span></td>
           <td><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/mock1_problem.ipynb">문제 · 코랩에서 열기</a><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/mock1_solution.ipynb">해설</a></td></tr>
-      <tr><td class="d">Day 12~14</td><td>모의고사 2회(회귀) · 3회, 시험 전날 점검</td><td><span class="tag" style="background:var(--x)">실전</span></td><td class="soon">10/26부터 차례로 추가</td></tr>
+      <tr><td class="d">Day 12</td><td>모의고사 2회: 배달 소요시간 예측 14문항 (회귀, 분류와 다른 곳 정리)</td><td><span class="tag" style="background:var(--x)">실전</span></td>
+          <td><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/mock2_problem.ipynb">문제 · 코랩에서 열기</a><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/mock2_solution.ipynb">해설</a></td></tr>
+      <tr><td class="d">Day 13~14</td><td>모의고사 3회, 시험 전날 점검</td><td><span class="tag" style="background:var(--x)">실전</span></td><td class="soon">10/27부터 차례로 추가</td></tr>
     </tbody>
   </table>
 
   <h2>공식 샘플문항 대응표</h2>
-  <p>AICE 홈페이지에 공개된 Associate 샘플문항(분류형, 14문항)에서 쓰는 함수가 어느 날 나오는지 정리했습니다. 문항 내용은 옮기지 않고 함수만 적었습니다.</p>
+  <p>AICE 홈페이지에 공개된 Associate 샘플문항은 분류형과 회귀형 두 가지(각 14문항)입니다. 쓰는 함수가 어느 날 나오는지 정리했습니다. 문항 내용은 옮기지 않고 함수만 적었습니다.</p>
+  <h3 style="margin:18px 0 10px;font-size:18px">분류형</h3>
   <table>
     <thead><tr><th>문항</th><th>형식</th><th>핵심 함수</th><th>배우는 날</th></tr></thead>
     <tbody>
@@ -107,12 +110,24 @@ td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white
       <tr><td>13~14</td><td>빈칸 · 직접 작성</td><td>LabelEncoder, to_categorical, Sequential, Dense, Dropout, EarlyStopping(patience), 학습 곡선</td><td class="d">Day 6</td></tr>
     </tbody>
   </table>
+  <h3 style="margin:22px 0 10px;font-size:18px">회귀형 (분류와 다른 문항만)</h3>
+  <table>
+    <thead><tr><th>문항</th><th>형식</th><th>핵심 함수</th><th>배우는 날</th></tr></thead>
+    <tbody>
+      <tr><td>5</td><td>직접 작성</td><td>기준값으로 행 삭제(남길 조건), drop(axis=1, inplace=True)</td><td class="d">Day 2 · 12</td></tr>
+      <tr><td>8</td><td>직접 작성</td><td>train_test_split (stratify 없이)</td><td class="d">Day 12</td></tr>
+      <tr><td>9</td><td>오류 정정</td><td>RobustScaler (fit_transform / 검증은 transform)</td><td class="d">Day 12</td></tr>
+      <tr><td>10</td><td>직접 작성</td><td>DecisionTreeRegressor, RandomForestRegressor</td><td class="d">Day 12</td></tr>
+      <tr><td>12</td><td>오류 정정</td><td>mean_absolute_error (작을수록 좋다), predict(X_valid)</td><td class="d">Day 12</td></tr>
+      <tr><td>13~14</td><td>직접 작성 · 빈칸</td><td>Dense(1, activation='linear'), loss='mean_squared_error', metrics=['mse'], history.history['val_mse']</td><td class="d">Day 12</td></tr>
+    </tbody>
+  </table>
 
   <h2 id="updates">업데이트 기록</h2>
   <table>
     <thead><tr><th>날짜</th><th>바뀐 내용</th></tr></thead>
     <tbody>
-      <tr><td class="d">2026-10-20</td><td>전체 점검 반영. 노트북: 지시만 보고 풀 수 없던 칸(Day 3 cond, Day 5·6 import, Day 10 10번) 수정, 다시 실행하면 답이 틀어지는 칸에 안내 추가, Day 5 빈칸 문제 2개 추가, 출력 예측 칸이 정답과 같은 모양으로 보이게 수정, 강의 밖 문항 2개 교체. 암기카드: 휴대폰 화면 축소 수정, Day 7 카드 복습 포함, 첫 방문일 기준으로 날짜별 공개, 카드 11장 문구 보완. 이 페이지: 휴대폰 표 넘침·다크 모드 태그 수정, 코랩 사용법과 유튜브 링크 추가. 이용 조건(개인 학습용, 재배포·판매 금지)을 페이지·카드·노트북에 표시. 유튜브·암기카드·코랩 링크는 새 탭으로 열리고, 암기카드에 홈으로 가는 링크 추가.</td></tr>
+      <tr><td class="d">2026-10-20</td><td>전체 점검 반영. 노트북: 지시만 보고 풀 수 없던 칸(Day 3 cond, Day 5·6 import, Day 10 10번) 수정, 다시 실행하면 답이 틀어지는 칸에 안내 추가, Day 5 빈칸 문제 2개 추가, 출력 예측 칸이 정답과 같은 모양으로 보이게 수정, 강의 밖 문항 2개 교체. 암기카드: 휴대폰 화면 축소 수정, Day 7 카드 복습 포함, 첫 방문일 기준으로 날짜별 공개, 카드 11장 문구 보완. 이 페이지: 휴대폰 표 넘침·다크 모드 태그 수정, 코랩 사용법과 유튜브 링크 추가. 이용 조건(개인 학습용, 재배포·판매 금지)을 페이지·카드·노트북에 표시. 유튜브·암기카드·코랩 링크는 새 탭으로 열리고, 암기카드에 홈으로 가는 링크 추가. 모의고사 2회(회귀) 노트북, Day 12 회귀 암기카드 9장, 회귀 샘플 대응표 추가.</td></tr>
     </tbody>
   </table>
 

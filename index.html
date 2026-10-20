@@ -3,11 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AICE 2주 합격 실습 자료</title>
-<meta name="description" content="AICE Associate 2주 합격 과정의 실습 노트북, 연습 데이터, 암기카드">
+<title>AICE 2주 합격 플랜 실습 자료</title>
+<meta name="description" content="AICE Associate 2주 합격 플랜의 실습 노트북, 연습 데이터, 암기카드">
+<meta property="og:title" content="AICE 2주 합격 플랜 실습 자료">
+<meta property="og:description" content="코랩에서 바로 여는 실습 노트북, 연습 데이터, 암기카드">
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-:root{--bg:#FBFBF8;--ink:#1A2033;--muted:#59617A;--line:#E1E4EB;--card:#fff;--a:#2F6BFF;--p:#0E9F7A;--m:#7C4DEB}
+:root{--x:#B45309;--g:#4B5563;--bg:#FBFBF8;--ink:#1A2033;--muted:#59617A;--line:#E1E4EB;--card:#fff;--a:#2F6BFF;--p:#0E9F7A;--m:#7C4DEB}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151F;--ink:#ECEEF4;--muted:#A3A9BA;--line:#2A3040;--card:#1A1F2C}}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font-family:Pretendard,system-ui,sans-serif;line-height:1.6;word-break:keep-all;overflow-wrap:break-word}
@@ -34,23 +37,24 @@ tr:last-child td{border-bottom:0}
 .soon{color:var(--muted);font-size:14px}
 td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white-space:nowrap}
 .note{margin-top:48px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
-@media (max-width:640px){table.days th:nth-child(3),table.days td:nth-child(3){display:none}table.days td a{display:block;margin:2px 0}th,td{padding:12px 10px}}
+@media (max-width:640px){table.days th:nth-child(3),table.days td:nth-child(3){display:none}table.days td a{display:block;margin:2px 0;white-space:normal;padding:6px 0}table.days td.d{white-space:normal}th,td{padding:12px 10px}}
 </style>
 </head>
 <body>
 <main>
   <div class="bar" aria-hidden="true"><i style="flex:30;background:var(--a)"></i><i style="flex:30;background:var(--p)"></i><i style="flex:40;background:var(--m)"></i></div>
   <h1>AICE Associate 2주 합격 플랜 실습 자료</h1>
-  <p class="lead">유튜브 「비개발자 PM의 AI노트」 2주 합격 과정에서 쓰는 노트북, 연습 데이터, 암기카드를 모았습니다.</p>
+  <p class="lead">유튜브 「비개발자 PM의 AI 노트」 2주 합격 플랜에서 쓰는 노트북, 연습 데이터, 암기카드를 모았습니다.</p>
 
   <h2>시작하는 법</h2>
   <div class="steps">
     <div class="step"><b>1. 영상 보기</b><p>그날의 영상을 먼저 봅니다. 10분 안팎이에요.</p></div>
-    <div class="step"><b>2. 실습 60분</b><p>아래 표에서 「코랩에서 열기」를 누르고, 첫 셀을 실행하면 연습 데이터가 자동으로 준비됩니다.</p></div>
+    <div class="step"><b>2. 실습 60분</b><p>아래 표에서 「코랩에서 열기」를 누릅니다(구글 로그인 필요). 먼저 「파일 → 드라이브에 사본 저장」을 해야 내가 쓴 풀이가 남아요. 위에서부터 셀을 실행하다 「Google에서 작성하지 않은 노트북」 경고가 뜨면 「무시하고 계속」을 누르세요. 「준비」 셀에서 연습 데이터가 자동으로 내려받아집니다.</p></div>
     <div class="step"><b>3. 암기카드 30분</b><p>카드 앱이 복습 날짜(오늘·내일·3일 뒤·7일 뒤)를 잡아 줍니다. 기록은 내 브라우저에 저장돼요.</p></div>
   </div>
   <div class="btns" style="margin-top:18px">
-    <a class="btn" href="cards/aice-cards.html">암기카드 열기</a>
+    <a class="btn" href="https://www.youtube.com/@pm_ainote">유튜브 영상 보기</a>
+    <a class="btn sub" href="cards/aice-cards.html">암기카드 열기</a>
     <a class="btn sub" href="data/aice_practice.csv" download>연습 데이터 받기 (aice_practice.csv)</a>
   </div>
 
@@ -70,7 +74,7 @@ td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day05_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day05_solution.ipynb">해설</a></td></tr>
       <tr><td class="d">Day 6</td><td>딥러닝과 학습 곡선: LabelEncoder·to_categorical, Sequential, EarlyStopping, history</td><td><span class="tag" style="background:var(--m)">모델링</span></td>
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day06_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day06_solution.ipynb">해설</a></td></tr>
-      <tr><td class="d">Day 7</td><td>1주차 총정리: 공식 샘플 14문항 흐름 한 번에, 자주 하는 실수 10</td><td><span class="tag" style="background:var(--m)">총정리</span></td>
+      <tr><td class="d">Day 7</td><td>1주차 총정리: 공식 샘플 14문항 흐름 한 번에, 자주 하는 실수 10</td><td><span class="tag" style="background:var(--g)">총정리</span></td>
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day07_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day07_solution.ipynb">해설</a></td></tr>
       <tr><td class="d">Day 8</td><td>분석 드릴 15문제: 빈칸 · 오류 정정 · 출력 예측</td><td><span class="tag" style="background:var(--a)">분석</span></td>
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day08_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day08_solution.ipynb">해설</a></td></tr>
@@ -78,9 +82,9 @@ td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day09_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day09_solution.ipynb">해설</a></td></tr>
       <tr><td class="d">Day 10</td><td>모델링 드릴 15문제: 데이터 분리, 스케일링, GridSearchCV, 딥러닝</td><td><span class="tag" style="background:var(--m)">모델링</span></td>
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day10_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/day10_solution.ipynb">해설</a></td></tr>
-      <tr><td class="d">Day 11</td><td>모의고사 1회: 통신사 고객 이탈 14문항 (90분 타이머로 먼저 풀기)</td><td><span class="tag" style="background:var(--ink)">실전</span></td>
+      <tr><td class="d">Day 11</td><td>모의고사 1회: 통신사 고객 이탈 14문항 (90분 타이머로 먼저 풀기)</td><td><span class="tag" style="background:var(--x)">실전</span></td>
           <td><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/mock1_problem.ipynb">문제 · 코랩에서 열기</a><a href="https://colab.research.google.com/github/pm-ainote/aice/blob/main/notebooks/mock1_solution.ipynb">해설</a></td></tr>
-      <tr><td class="d">Day 12~14</td><td>모의고사 2회(회귀) · 3회, 시험 전날 점검</td><td><span class="tag" style="background:var(--ink)">실전</span></td><td class="soon">곧 추가</td></tr>
+      <tr><td class="d">Day 12~14</td><td>모의고사 2회(회귀) · 3회, 시험 전날 점검</td><td><span class="tag" style="background:var(--x)">실전</span></td><td class="soon">10/26부터 차례로 추가</td></tr>
     </tbody>
   </table>
 
@@ -94,10 +98,18 @@ td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white
       <tr><td>4</td><td>직접 작성</td><td>boxplot</td><td class="d">Day 4</td></tr>
       <tr><td>5</td><td>빈칸</td><td>IQR 울타리, drop(…index, axis=0), reset_index</td><td class="d">Day 3</td></tr>
       <tr><td>6</td><td>빈칸</td><td>isnull().sum(), dropna</td><td class="d">Day 3</td></tr>
-      <tr><td>7</td><td>빈칸 + 오류 정정</td><td>loc + isin 으로 값 바꾸기, value_counts, drop axis=1, get_dummies, info</td><td class="d">Day 3</td></tr>
+      <tr><td>7</td><td>빈칸 + 오류 정정</td><td>loc + isin 으로 값 바꾸기, value_counts, drop axis=1, get_dummies, info (isin·value_counts 는 Day 1~2 에서 먼저 나옴)</td><td class="d">Day 3</td></tr>
       <tr><td>8~9</td><td>직접 작성 · 오류 정정</td><td>train_test_split(stratify), StandardScaler(검증은 transform)</td><td class="d">Day 5</td></tr>
       <tr><td>10~12</td><td>직접 작성 · 오류 정정</td><td>GridSearchCV, best_estimator_, feature_importances_, accuracy_score</td><td class="d">Day 5</td></tr>
-      <tr><td>13~14</td><td>빈칸 · 직접 작성</td><td>Sequential, Dense, Dropout, EarlyStopping(patience), to_categorical, 학습 곡선</td><td class="d">Day 6</td></tr>
+      <tr><td>13~14</td><td>빈칸 · 직접 작성</td><td>LabelEncoder, to_categorical, Sequential, Dense, Dropout, EarlyStopping(patience), 학습 곡선</td><td class="d">Day 6</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="updates">업데이트 기록</h2>
+  <table>
+    <thead><tr><th>날짜</th><th>바뀐 내용</th></tr></thead>
+    <tbody>
+      <tr><td class="d">2026-10-20</td><td>전체 점검 반영. 노트북: 지시만 보고 풀 수 없던 칸(Day 3 cond, Day 5·6 import, Day 10 10번) 수정, 다시 실행하면 답이 틀어지는 칸에 안내 추가, Day 5 빈칸 문제 2개 추가, 출력 예측 칸이 정답과 같은 모양으로 보이게 수정, 강의 밖 문항 2개 교체. 암기카드: 휴대폰 화면 축소 수정, Day 7 카드 복습 포함, 첫 방문일 기준으로 날짜별 공개, 카드 11장 문구 보완. 이 페이지: 휴대폰 표 넘침·다크 모드 태그 수정, 코랩 사용법과 유튜브 링크 추가.</td></tr>
     </tbody>
   </table>
 

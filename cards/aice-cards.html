@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AICE 2주 합격 암기카드</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700&family=Nanum+Gothic+Coding:wght@400;700&display=swap">
@@ -52,6 +56,8 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: break-word;
   padding-block: 28px 56px;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -127,6 +133,10 @@ footer { color: var(--muted); font-size: 13px; display: flex; flex-direction: co
 footer p { margin: 0; }
 .reset-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
+/* 휴대폰: 긴 코드 줄을 접어서 빈칸이 화면 밖으로 나가지 않게 한다 */
+@media (max-width: 640px) {
+  pre.code { white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal; }
+}
 @media (prefers-reduced-motion: reduce) {
   .face, .bar > i { transition: none; }
 }
@@ -171,17 +181,17 @@ footer p { margin: 0; }
   var CARDS = [
     { d: 1, q: "scikit-learn을 별칭 sk로 불러온다 (공식 샘플 1번 형식)", t: "별칭은 문제에서 정해 준다. pandas만 외우면 틀린다.",
       c: "import ⟦sklearn⟧ as ⟦sk⟧" },
-    { d: 1, q: "wine.csv를 변수 data에 읽고 첫 4행을 출력한다 (공식 샘플 2번 형식)", t: "변수 이름과 행 개수를 문제에 적힌 그대로 쓴다. head() 기본은 5행이다.",
-      c: "⟦data⟧ = pd.read_csv('wine.csv')\ndata.head(⟦4⟧)" },
+    { d: 1, q: "data.csv를 변수 data에 읽고 첫 4행을 출력한다 (공식 샘플 2번 형식)", t: "변수 이름과 행 개수를 문제에 적힌 그대로 쓴다. head() 기본은 5행이다.",
+      c: "⟦data⟧ = pd.read_csv('data.csv')\ndata.head(⟦4⟧)" },
     { d: 1, q: "df.shape()를 실행했더니 에러가 났다. 고친 코드는?", t: "shape는 함수가 아니라 값이다. 괄호를 붙이면 tuple을 호출하려다 실패한다.",
       c: "# TypeError: 'tuple' object is not callable\ndf.⟦shape⟧" },
     { d: 1, q: "연습 데이터 df.shape의 결과를 예측한다", t: "(행, 열) 순서다. 600행, 6개 컬럼.",
       c: "⟦(600, 6)⟧" },
     { d: 1, q: "비어 있지 않은 값의 개수와 타입을 한 번에 본다 (describe가 아니다)", t: "describe는 숫자 통계, info는 타입과 결측 요약.",
       c: "df.⟦info⟧()" },
-    { d: 1, q: "결측치 개수를 세고, 결측이 가장 많은 컬럼 이름을 꺼낸다", t: "답안 변수에 컬럼 이름을 저장하는 문제에서 쓴다. 연습 데이터는 Age.",
+    { d: 4, q: "결측치 개수를 세고, 결측이 가장 많은 컬럼 이름을 꺼낸다", t: "idxmax = 가장 큰 값의 이름. 답안 변수에 컬럼 이름을 저장하는 문제에서 쓴다. 연습 데이터는 Age.",
       c: "df.isnull().sum().⟦idxmax⟧()" },
-    { d: 1, q: "Sex 값별 개수가 아니라 비율을 본다", t: "normalize=True면 합이 1인 비율이 나온다.",
+    { d: 2, q: "Sex 값별 개수가 아니라 비율을 본다", t: "normalize=True면 합이 1인 비율이 나온다. 2편 영상에는 없는 옵션이라 이 카드로 익힌다(8편 드릴에 나온다).",
       c: "df['Sex'].value_counts(⟦normalize⟧=True)" },
     { d: 1, q: "컬럼 2개 목록과, male을 0으로 바꾸는 사전을 만든다", t: "list는 대괄호, dict는 중괄호. 콜론으로 짝짓는다.",
       c: "cols = ⟦[⟧'Age', 'Fare'⟦]⟧\nm = ⟦{⟧'male': 0⟦}⟧" },
@@ -192,7 +202,7 @@ footer p { margin: 0; }
       c: "df[(df['Age'] >= 30) ⟦&⟧ (df['Sex'] == 'female')]" },
     { d: 2, q: "Fare가 300 이상인 행을 삭제한다 (공식 샘플 5번 형식)", t: "지울 조건이 아니라 남길 조건을 쓴다. 300 이상 삭제 = 300 미만 남기기.",
       c: "df = df[df['Fare'] ⟦<⟧ 300]" },
-    { d: 2, q: "df.drop('RID')에서 KeyError가 났다. RID 컬럼을 지우는 코드는?", t: "drop은 기본이 행 삭제. columns=를 붙이고 결과를 다시 담는다.",
+    { d: 2, q: "df.drop('RID')에서 KeyError가 났다. RID 컬럼을 지우는 코드는?", t: "drop은 기본이 행 삭제. columns=를 붙이고 결과를 다시 담는다. RID 는 예시 컬럼(연습 데이터에는 없다).",
       c: "df = df.drop(⟦columns⟧=['RID'])" },
     { d: 2, q: "Embarked가 C 또는 Q인 행만 고른다", t: "값이 여러 개면 | 대신 isin.",
       c: "df[df['Embarked'].⟦isin⟧(['C', 'Q'])]" },
@@ -212,13 +222,13 @@ footer p { margin: 0; }
       c: "df.⟦isnull⟧().⟦sum⟧()" },
     { d: 3, q: "결측치가 있는 행을 모두 지우고 확인한다 (샘플 6번 빈칸 2개)", t: "600행이 480행으로. 지운 뒤 isnull().sum() 으로 다시 확인.",
       c: "print(df.⟦isnull⟧().sum())\ndf_na = df.⟦dropna⟧()\nprint(df_na.isnull().sum())" },
-    { d: 3, q: "숫자 결측을 채울 때 평균 대신 쓰는 값과 코드는? (요금 평균 37, 중앙값 17.65)", t: "중앙값 = 줄 세웠을 때 한가운데 값. 비싼 표 몇 장이 평균을 끌어올린다.",
+    { d: 3, q: "숫자 결측을 채울 때 평균 대신 쓰는 값과 코드는? (요금 평균 37, 중앙값 17.65)", t: "중앙값 = 줄 세웠을 때 한가운데 값. 비싼 표 몇 장이 평균을 끌어올린다. 나이는 평균과 중앙값이 거의 같지만 습관처럼 중앙값을 쓴다.",
       c: "df['Age'] = df['Age'].⟦fillna⟧(df['Age'].⟦median⟧())" },
     { d: 3, q: "fillna(df['Embarked'].mode()) 는 에러 없이 빈칸이 그대로 남았다. 고친 코드는?", t: "mode() 는 값이 아니라 목록을 돌려준다. 대괄호 0 으로 첫 값을 꺼낸다.",
       c: "df['Embarked'] = df['Embarked'].fillna(df['Embarked'].mode()⟦[0]⟧)" },
     { d: 3, q: "IQR 울타리를 만든다. 빈칸 4개는? (샘플 5번 변수 이름)", t: "q1 = 아래 4분의 1 지점, q3 = 위 4분의 1 지점, 그 간격이 IQR. 1.5 는 고정 숫자.",
       c: "q1 = df['Fare'].quantile(⟦0.25⟧)\nq3 = df['Fare'].quantile(⟦0.75⟧)\niqr = q3 - q1\nlower_fence = q1 - ⟦1.5⟧ * iqr\nupper_fence = q3 + ⟦1.5⟧ * iqr" },
-    { d: 3, q: "울타리 밖 행을 지운다 (샘플 5번 빈칸 2개). 지우기 전에 볼 것은?", t: "index = 행마다 붙은 번호표. 지울 행의 번호표를 drop 에 넘긴다. 연습 데이터는 52명 중 49명이 1등석이었다.",
+    { d: 3, q: "울타리 밖 행을 지운다 (샘플 5번 빈칸 2개). 지우기 전에 볼 것은?", t: "index = 행마다 붙은 번호표. 지울 행의 번호표를 drop 에 넘긴다. 지우기 전에 df[cond] 로 누가 지워지는지 본다. 연습 데이터는 52명 중 49명이 1등석이었다.",
       c: "df_temp = df.⟦drop⟧(df[cond].⟦index⟧, axis=0)" },
     { d: 3, q: "행을 지운 뒤 번호표를 0부터 다시 매긴다. reset_index(drop=True) 만 쓰면?", t: "대입도 inplace 도 없으면 아무것도 안 바뀐다(마지막 번호 599 그대로). drop=True 가 없으면 index 컬럼이 생긴다.",
       c: "df_temp.⟦reset_index⟧(⟦drop=True⟧, ⟦inplace=True⟧)" },
@@ -254,14 +264,14 @@ footer p { margin: 0; }
       c: "X = df.⟦drop⟧('Survived', ⟦axis=1⟧)\ny = df['Survived']" },
     { d: 5, q: "학습용·검증용을 70:30, 시드 7, 답 비율 유지로 나눈다 (샘플 8번)", t: "검증용 = 모델이 처음 보는 문제. 받는 순서는 문제 둘, 답 둘. 연습 데이터는 420명 / 180명.",
       c: "X_train, X_valid, y_train, y_valid = ⟦train_test_split⟧(\n    X, y, ⟦test_size⟧=0.3, ⟦random_state⟧=7, ⟦stratify⟧=y)" },
-    { d: 5, q: "X_valid = ss.fit_transform(X_valid). 에러는 없지만 틀렸다 (샘플 9번)", t: "fit = 자 만들기. 검증용으로 자를 다시 만들면 답을 미리 본 셈. 연습 데이터는 맞게 하면 최댓값 3, 틀리면 4.98.",
+    { d: 5, q: "X_valid = ss.fit_transform(X_valid). 에러는 없지만 틀렸다 (샘플 9번)", t: "fit = 자 만들기. 검증용으로 자를 다시 만들면 답을 미리 본 셈. 연습 데이터는 맞게 하면 최댓값 3, 틀리면 5 (반올림 전 3.27, 4.98).",
       c: "ss = StandardScaler()\nX_train = ss.⟦fit_transform⟧(X_train)\nX_valid = ss.⟦transform⟧(X_valid)\nround(np.max(X_valid))" },
     { d: 5, q: "설정 없는 결정 트리: 학습용 100%, 검증용 53.9%. 무슨 상태?", t: "과적합 = 외우기만 한 상태. 모두 사망이라고 찍어도 55%. 나무가 17층까지 자랐다.",
       c: "dt = DecisionTreeClassifier(random_state=7)\ndt.⟦fit⟧(X_train, y_train)\ndt.⟦score⟧(X_valid, y_valid)" },
     { d: 5, q: "결정 트리 하이퍼파라미터를 GridSearchCV 로 찾는다 (샘플 10번)", t: "하이퍼파라미터 = 사람이 정하는 설정값. 4 × 4 = 16 조합, cv=3 은 학습용을 셋으로 나눠 돌아가며 검사.",
       c: "param_grid_dt = {'⟦max_depth⟧': [3, 5, 7, 10], 'min_samples_split': [2, 3, 5, 10]}\ngs_dt = ⟦GridSearchCV⟧(estimator=dt, param_grid=param_grid_dt,\n                     ⟦cv⟧=3, scoring='accuracy', n_jobs=-1)\ngs_dt.fit(X_train, y_train)" },
     { d: 5, q: "랜덤포레스트 최적 분류기 개수를 답안에 저장한다 (샘플 10번)", t: "나무 여러 그루의 투표. 출력에 n_estimators 가 안 보이면 기본값 100 을 고른 것.",
-      c: "rf = ⟦RandomForestClassifier⟧(random_state=7)\nparam_grid_rf = {'⟦n_estimators⟧': [100, 200, 500], 'max_depth': [5, 10, 20], 'min_samples_split': [2, 5, 10]}\nprint(gs_rf.⟦best_estimator_⟧)" },
+      c: "rf = ⟦RandomForestClassifier⟧(random_state=7)\nparam_grid_rf = {'⟦n_estimators⟧': [100, 200, 500], 'max_depth': [5, 10, 20], 'min_samples_split': [2, 5, 10]}\nprint(gs_rf.⟦best_estimator_⟧)\n답안 = 100   # 출력에 n_estimators 가 없으면 기본값" },
     { d: 5, q: "from sklearn.metrics import accuracy 에서 ImportError. 고친 코드는? (샘플 12번)", t: "함수 이름은 accuracy_score. 정답(y_valid)이 먼저, 예측이 나중.",
       c: "from sklearn.metrics import ⟦accuracy_score⟧\nrf_acc = accuracy_score(⟦y_valid⟧, y_pred_rf)" },
     { d: 5, q: "dt.pred(X_valid) 에서 AttributeError. 예측 코드는? (샘플 12번)", t: "예측은 predict. GridSearch 로 찾은 최적 모델에서 부른다. 연습 데이터는 결정 트리 61.7%, 랜덤포레스트 64.4%.",
@@ -277,15 +287,15 @@ footer p { margin: 0; }
       c: "y_train = ⟦to_categorical⟧(y_train)\ny_valid = to_categorical(y_valid)" },
     { d: 6, q: "샘플 13번 빈칸: 층을 차례로 쌓는 그릇과 첫 층", t: "Dense = 숫자를 받아 계산하는 칸 묶음, 괄호 숫자 = 칸 수. input_dim 은 첫 층에만, 힌트 컬럼 수.",
       c: "model = ⟦Sequential⟧([\n    ⟦Dense⟧(128, activation='⟦relu⟧', ⟦input_dim⟧=X_train.shape[1]),\n    ..." },
-    { d: 6, q: "학습할 때마다 칸의 30%를 쉬게 해서 외우기를 막는 층", t: "과적합(5편) 방지 장치. 샘플 구조: Dense 128 → Dropout 0.3 → 64 → 32 → 2.",
+    { d: 6, q: "학습할 때마다 칸의 30%를 쉬게 해서 외우기를 막는 층", t: "과적합(5편) 방지 장치. 강의 모델 구조: Dense 128 → Dropout 0.3 → 64 → 32 → 2.",
       c: "⟦Dropout⟧(⟦0.3⟧)" },
-    { d: 6, q: "정답을 두 칸으로 펼쳤다. 마지막 층은?", t: "마지막 층 칸 수 = 정답 칸 수. Dense(1) 이면 target (None, 2) vs output (None, 1) 모양 에러.",
+    { d: 6, q: "정답을 두 칸으로 펼쳤다. 마지막 층은?", t: "마지막 층 칸 수 = 정답 칸 수. Dense(1) 이면 target (None, 2) vs output (None, 1) 모양 에러. softmax 와 categorical_crossentropy 짝도 맞다. 문제에 나온 짝을 따른다.",
       c: "Dense(⟦2⟧, activation='⟦sigmoid⟧')" },
     { d: 6, q: "학습 규칙 세 가지를 정한다", t: "optimizer = 고쳐 나가는 방법, loss = 틀린 정도(두 가지 중 고르기면 binary_crossentropy), metrics = 사람이 볼 점수.",
       c: "model.⟦compile⟧(optimizer='⟦adam⟧', loss='⟦binary_crossentropy⟧', metrics=['accuracy'])" },
     { d: 6, q: "샘플 13번 빈칸: val_loss 가 14번 나아지지 않으면 멈춘다", t: "patience = 참는 횟수. 철자를 틀리면(patiance) TypeError.",
       c: "estop = ⟦EarlyStopping⟧(monitor='⟦val_loss⟧', ⟦patience⟧=14)" },
-    { d: 6, q: "30바퀴, 128개씩, 바퀴마다 검증용으로 채점하며 학습하고 기록을 남긴다", t: "epoch = 문제집 한 바퀴, batch_size = 한 번에 푸는 문제 수. 연습 데이터는 7바퀴째 val_loss 최저 → 14번 참고 21바퀴에서 멈춤.",
+    { d: 6, q: "30바퀴, 128개씩, 바퀴마다 검증용으로 채점하며 학습하고 기록을 남긴다", t: "epoch = 문제집 한 바퀴, batch_size = 한 번에 푸는 문제 수. 연습 데이터는 7바퀴째 val_loss 최저 → 14번 더 참은 뒤 21바퀴에서 멈춤.",
       c: "history = model.fit(X_train, y_train, ⟦epochs⟧=30, ⟦batch_size⟧=128,\n                    ⟦validation_data⟧=(X_valid, y_valid), ⟦callbacks⟧=[estop])" },
     { d: 6, q: "샘플 14번: 학습·검증 정확도를 한 그래프에, 제목·축·범례까지", t: "history 에 바퀴마다 점수가 있다. 범례는 그린 순서대로 'acc', 'val_acc'.",
       c: "plt.plot(history.history['⟦accuracy⟧'])\nplt.plot(history.history['⟦val_accuracy⟧'])\nplt.⟦title⟧('Model Accuracy')\nplt.xlabel('Epoch'); plt.ylabel('Accuracy')\nplt.⟦legend⟧(['acc', 'val_acc'])" },
@@ -314,8 +324,8 @@ footer p { margin: 0; }
       c: "Dense(⟦2⟧, activation='sigmoid')" },
   ];
   var DAYS = ['입문', '분석', '전처리', '시각화', '머신러닝', '딥러닝', '총정리'];
-  var START = '2026-10-15';
   var KEY = 'aice-dungeon-cards-v2';
+  var START_KEY = 'aice-cards-start';
   var INTERVALS = [1, 3, 7];
 
   // 복습 기록 불러오기 (저장소를 못 쓰는 환경에서도 동작한다)
@@ -327,12 +337,18 @@ footer p { margin: 0; }
   function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
   function today() { return ymd(new Date()); }
   function addDays(s, n) { var p = s.split('-').map(Number); return ymd(new Date(p[0], p[1] - 1, p[2] + n)); }
+  function startDay() {
+    // 처음 연 날을 Day 1 로 삼는다 (저장소를 못 쓰면 오늘)
+    var s = null;
+    try { s = localStorage.getItem(START_KEY); if (!s) { s = today(); localStorage.setItem(START_KEY, s); } } catch (e) { s = today(); }
+    return s;
+  }
   function openDay() {
-    var p = START.split('-').map(Number);
+    var p = startDay().split('-').map(Number);
     var s = new Date(p[0], p[1] - 1, p[2]);
     var t = new Date(); t.setHours(0, 0, 0, 0);
     var diff = Math.floor((t - s) / 86400000);
-    return Math.max(1, Math.min(6, diff + 1));
+    return Math.max(1, Math.min(7, diff + 1));
   }
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   function codeHtml(code, back) {

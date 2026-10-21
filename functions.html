@@ -24,17 +24,18 @@ h2{font-size:22px;font-weight:800;margin:40px 0 14px;letter-spacing:-.4px}
 .rule b{display:block;margin-bottom:4px}
 .rule p{font-size:15px;color:var(--muted)}
 code{font-family:'D2Coding',Consolas,'Courier New',monospace;font-size:.95em}
-.rule code{background:var(--code);padding:1px 6px;border-radius:6px}
+.rule code,.q p code{background:var(--code);color:var(--ink);padding:1px 5px;border-radius:5px;word-break:break-word}
 .q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:12px}
 .h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .n{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:10px;color:#fff;font-weight:900}
 .h b{font-size:18px}
 .ar{margin-left:auto;font-size:13px;color:var(--muted)}
-pre{margin:12px 0 10px;background:var(--code);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:14.5px;line-height:1.6}
-.q p{font-size:15px;color:var(--muted)}
+pre{margin:12px 0 10px;background:var(--code);border-radius:10px;padding:14px 16px;font-size:14.5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:break-word}
+pre span{display:block;padding-left:4ch;text-indent:-4ch}
+.q p{font-size:15px;color:var(--muted);line-height:1.75}
 .note{margin-top:40px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}
 .note a,.lead a{color:var(--a);font-weight:700;text-decoration:none}
-@media (max-width:640px){pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13.5px}.ar{margin-left:0;width:100%}}
+@media (max-width:640px){pre{font-size:12px;padding:12px}.q{padding:16px 14px}.ar{margin-left:0;width:100%}}
 </style>
 </head>
 <body>
@@ -53,128 +54,73 @@ pre{margin:12px 0 10px;background:var(--code);border-radius:10px;padding:14px 16
   <h2>문항 순서대로</h2>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--a)">1</span><b>라이브러리 불러오기</b><span class="ar">데이터 분석 · Day 1</span></div>
-    <pre><code>import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import sklearn as sk</code></pre>
-    <p>별칭은 문제가 정해 줘요. 분류 1번은 sklearn as sk, 회귀 1번은 pandas as pd 를 물어요.</p>
+    <pre><code><span>import pandas as pd</span><span>import numpy as np</span><span>import matplotlib.pyplot as plt</span><span>import seaborn as sns</span><span>import sklearn as sk</span></code></pre>
+    <p>별칭은 문제가 정해 줘요. 분류 1번은 <code>sklearn as sk</code>, 회귀 1번은 <code>pandas as pd</code> 를 물어요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--a)">2</span><b>파일 읽고 앞부분 보기</b><span class="ar">데이터 분석 · Day 1</span></div>
-    <pre><code>df = pd.read_csv(&#x27;aice_practice.csv&#x27;)
-df.head(4)</code></pre>
-    <p>변수 이름과 행 수는 문제에 적힌 그대로 써요. head() 만 쓰면 5행이에요.</p>
+    <pre><code><span>df = pd.read_csv(&#x27;aice_practice.csv&#x27;)</span><span>df.head(4)</span></code></pre>
+    <p>변수 이름과 행 수는 문제에 적힌 그대로 써요. <code>head()</code> 만 쓰면 5행이에요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--a)">3</span><b>그래프 여러 칸에 그리기</b><span class="ar">데이터 분석 · Day 4</span></div>
-    <pre><code>fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(12, 4))
-sns.histplot(data=df, x=&#x27;Age&#x27;, hue=&#x27;Survived&#x27;, ax=axes[0])
-axes[0].set_title(&#x27;Age&#x27;)
-sns.countplot(data=df, x=&#x27;Pclass&#x27;, ax=axes[1])</code></pre>
-    <p>분류 3번은 subplots·ax=·set_title 빈칸이에요. 회귀 3번은 countplot 을 그려 보고 가장 많은 값을 답 변수에 저장해요.</p>
+    <pre><code><span>fig, axes = plt.subplots(</span><span>    nrows=1, ncols=2, figsize=(12, 4))</span><span>sns.histplot(data=df, x=&#x27;Age&#x27;,</span><span>    hue=&#x27;Survived&#x27;, ax=axes[0])</span><span>axes[0].set_title(&#x27;Age&#x27;)</span><span>sns.countplot(data=df, x=&#x27;Pclass&#x27;,</span><span>    ax=axes[1])</span></code></pre>
+    <p>분류 3번은 <code>subplots</code>, <code>ax=</code>, <code>set_title</code> 빈칸이에요. 회귀 3번은 <code>countplot</code> 을 그려 보고 가장 많은 값을 답 변수에 저장해요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--a)">4</span><b>두 열의 관계 그래프</b><span class="ar">데이터 분석 · Day 4</span></div>
-    <pre><code>sns.boxplot(data=df, x=&#x27;Pclass&#x27;, y=&#x27;Fare&#x27;)
-sns.jointplot(data=df, x=&#x27;Age&#x27;, y=&#x27;Fare&#x27;)</code></pre>
-    <p>분류 4번은 boxplot, 회귀 4번은 jointplot 이에요. 그래프 함수는 모두 data=, x=, y= 로 열 이름을 넘겨요.</p>
+    <pre><code><span>sns.boxplot(data=df, x=&#x27;Pclass&#x27;, y=&#x27;Fare&#x27;)</span><span>sns.jointplot(data=df, x=&#x27;Age&#x27;, y=&#x27;Fare&#x27;)</span></code></pre>
+    <p>분류 4번은 <code>boxplot</code>, 회귀 4번은 <code>jointplot</code> 이에요. 그래프 함수는 모두 <code>data=</code>, <code>x=</code>, <code>y=</code> 로 열 이름을 넘겨요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--p)">5</span><b>이상치 행 지우기 · 번호 다시 매기기</b><span class="ar">데이터 전처리 · Day 3</span></div>
-    <pre><code>q1 = df[&#x27;Fare&#x27;].quantile(0.25)
-q3 = df[&#x27;Fare&#x27;].quantile(0.75)
-iqr = q3 - q1
-cond = (df[&#x27;Fare&#x27;] &lt; q1 - 1.5 * iqr) | (df[&#x27;Fare&#x27;] &gt; q3 + 1.5 * iqr)
-df = df.drop(df[cond].index, axis=0)
-df.reset_index(drop=True, inplace=True)</code></pre>
-    <p>분류 5번 형식이에요. 회귀 5번은 기준값으로 남길 행만 고르고(df = df[df['열'] &lt; 300]), 필요 없는 열을 drop('열', axis=1, inplace=True) 로 지워요.</p>
+    <pre><code><span>q1 = df[&#x27;Fare&#x27;].quantile(0.25)</span><span>q3 = df[&#x27;Fare&#x27;].quantile(0.75)</span><span>iqr = q3 - q1</span><span>low = q1 - 1.5 * iqr</span><span>high = q3 + 1.5 * iqr</span><span>cond = ((df[&#x27;Fare&#x27;] &lt; low) |</span><span>        (df[&#x27;Fare&#x27;] &gt; high))</span><span>df = df.drop(df[cond].index, axis=0)</span><span>df.reset_index(drop=True, inplace=True)</span></code></pre>
+    <p>분류 5번 형식이에요. 회귀 5번은 기준값으로 남길 행만 고르고(<code>df = df[df[&#x27;열&#x27;] &lt; 300]</code>), 필요 없는 열을 <code>drop(&#x27;열&#x27;, axis=1, inplace=True)</code> 로 지워요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--p)">6</span><b>빈칸 세고 지우기</b><span class="ar">데이터 전처리 · Day 3</span></div>
-    <pre><code>df.isnull().sum()
-df = df.dropna()</code></pre>
-    <p>분류·회귀 같아요. 지우지 말고 채우라고 하면 df['Age'].fillna(df['Age'].median()) 처럼 써요(공식 샘플에는 없음).</p>
+    <pre><code><span>df.isnull().sum()</span><span>df = df.dropna()</span></code></pre>
+    <p>분류·회귀 같아요. 지우지 말고 채우라고 하면 <code>df[&#x27;Age&#x27;].fillna(df[&#x27;Age&#x27;].median())</code> 처럼 써요(공식 샘플에는 없음).</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--p)">7</span><b>값 묶기 · 글자를 숫자 열로</b><span class="ar">데이터 전처리 · Day 3</span></div>
-    <pre><code>df[&#x27;Embarked&#x27;].value_counts()
-df.loc[df[&#x27;Embarked&#x27;].isin([&#x27;C&#x27;, &#x27;Q&#x27;]), [&#x27;Embarked&#x27;]] = &#x27;other&#x27;
-df = pd.get_dummies(data=df, columns=[&#x27;Sex&#x27;, &#x27;Embarked&#x27;])
-df.info()</code></pre>
-    <p>분류 7번에는 열을 지우는 코드를 고치는 오류 정정이 있어요. 열은 axis=1, 행은 axis=0 이에요. 회귀 7번은 get_dummies 와 columns 가 빈칸이에요.</p>
+    <pre><code><span>df[&#x27;Embarked&#x27;].value_counts()</span><span>df.loc[df[&#x27;Embarked&#x27;].isin([&#x27;C&#x27;, &#x27;Q&#x27;]),</span><span>       [&#x27;Embarked&#x27;]] = &#x27;other&#x27;</span><span>df = pd.get_dummies(data=df,</span><span>    columns=[&#x27;Sex&#x27;, &#x27;Embarked&#x27;])</span><span>df.info()</span></code></pre>
+    <p>분류 7번에는 열을 지우는 코드를 고치는 오류 정정이 있어요. 열은 <code>axis=1</code>, 행은 <code>axis=0</code> 이에요. 회귀 7번은 <code>get_dummies</code> 와 <code>columns</code> 가 빈칸이에요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--p)">8</span><b>문제(X)와 답(y) 나누기</b><span class="ar">데이터 전처리 · Day 5</span></div>
-    <pre><code>from sklearn.model_selection import train_test_split
-X = df.drop(&#x27;Survived&#x27;, axis=1)
-y = df[&#x27;Survived&#x27;]
-X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.3, random_state=7, stratify=y)</code></pre>
-    <p>test_size·random_state 숫자는 문제가 정해 줘요. 분류에서는 stratify=y 를 넣어요. 회귀 샘플은 stratify 없이 test_size=0.2, random_state=42 예요.</p>
+    <pre><code><span>from sklearn.model_selection import train_test_split</span><span>X = df.drop(&#x27;Survived&#x27;, axis=1)</span><span>y = df[&#x27;Survived&#x27;]</span><span>X_train, X_valid, y_train, y_valid = train_test_split(</span><span>    X, y, test_size=0.3,</span><span>    random_state=7, stratify=y)</span></code></pre>
+    <p><code>test_size</code>·<code>random_state</code> 숫자는 문제가 정해 줘요. 분류에서는 <code>stratify=y</code> 를 넣어요. 회귀 샘플은 stratify 없이 <code>test_size=0.2, random_state=42</code> 예요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--p)">9</span><b>숫자 크기 맞추기(스케일링)</b><span class="ar">데이터 전처리 · Day 5</span></div>
-    <pre><code>from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_valid = scaler.transform(X_valid)
-round(np.max(X_valid))</code></pre>
-    <p>학습용은 fit_transform, 검증용은 transform 이에요. 분류는 StandardScaler, 회귀는 RobustScaler 이고 쓰는 법은 같아요. 둘 다 이 부분을 고치는 오류 정정이에요.</p>
+    <pre><code><span>from sklearn.preprocessing import StandardScaler</span><span>scaler = StandardScaler()</span><span>X_train = scaler.fit_transform(X_train)</span><span>X_valid = scaler.transform(X_valid)</span><span>round(np.max(X_valid))</span></code></pre>
+    <p>학습용은 <code>fit_transform</code>, 검증용은 <code>transform</code> 이에요. 분류는 <code>StandardScaler</code>, 회귀는 <code>RobustScaler</code> 이고 쓰는 법은 같아요. 둘 다 이 부분을 고치는 오류 정정이에요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--m)">10</span><b>모델 만들고 학습하기</b><span class="ar">AI 모델링 · Day 5</span></div>
-    <pre><code>from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV
-gs = GridSearchCV(estimator=DecisionTreeClassifier(random_state=7),
-                  param_grid={&#x27;max_depth&#x27;: [3, 5, 7]}, cv=3, scoring=&#x27;accuracy&#x27;, n_jobs=-1)
-gs.fit(X_train, y_train)
-gs.best_params_
-rf = RandomForestClassifier(n_estimators=100, random_state=7)
-rf.fit(X_train, y_train)</code></pre>
-    <p>분류에서는 GridSearchCV 로 설정을 찾아요. 회귀 샘플은 GridSearchCV 없이 DecisionTreeRegressor·RandomForestRegressor 를 문제가 준 설정(max_depth 등)으로 바로 만들어요. 회귀에서 GridSearchCV 를 쓴다면 scoring='accuracy' 는 빼요.</p>
+    <pre><code><span>from sklearn.tree import DecisionTreeClassifier</span><span>from sklearn.ensemble import RandomForestClassifier</span><span>from sklearn.model_selection import GridSearchCV</span><span>dt = DecisionTreeClassifier(</span><span>    random_state=7)</span><span>gs = GridSearchCV(estimator=dt,</span><span>    param_grid={&#x27;max_depth&#x27;: [3, 5, 7]},</span><span>    cv=3, scoring=&#x27;accuracy&#x27;, n_jobs=-1)</span><span>gs.fit(X_train, y_train)</span><span>gs.best_params_</span><span>rf = RandomForestClassifier(</span><span>    n_estimators=100, random_state=7)</span><span>rf.fit(X_train, y_train)</span></code></pre>
+    <p>분류에서는 <code>GridSearchCV</code> 로 설정을 찾아요. 회귀 샘플은 GridSearchCV 없이 <code>DecisionTreeRegressor</code>, <code>RandomForestRegressor</code> 를 문제가 준 설정(<code>max_depth</code> 등)으로 바로 만들어요. 회귀에서 GridSearchCV 를 쓴다면 <code>scoring=&#x27;accuracy&#x27;</code> 는 빼요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--m)">11</span><b>중요한 변수 보기</b><span class="ar">AI 모델링 · Day 5</span></div>
-    <pre><code>fi = pd.DataFrame({&#x27;feature&#x27;: X.columns,
-                   &#x27;importance&#x27;: gs.best_estimator_.feature_importances_})
-fi = fi.sort_values(&#x27;importance&#x27;, ascending=False)
-sns.barplot(data=fi, x=&#x27;importance&#x27;, y=&#x27;feature&#x27;)</code></pre>
-    <p>분류·회귀 모두 오류 정정이에요. 단골은 feature_importances_ 이름과 sort_index 를 sort_values 로 고치기예요. 분류에서는 best_estimator_ 의 밑줄도 봐요(회귀 샘플은 GridSearchCV 가 없어 모델에서 바로 꺼내요).</p>
+    <pre><code><span>best = gs.best_estimator_</span><span>fi = pd.DataFrame({&#x27;feature&#x27;: X.columns,</span><span>    &#x27;importance&#x27;: best.feature_importances_})</span><span>fi = fi.sort_values(&#x27;importance&#x27;,</span><span>    ascending=False)</span><span>sns.barplot(data=fi, x=&#x27;importance&#x27;,</span><span>    y=&#x27;feature&#x27;)</span></code></pre>
+    <p>분류·회귀 모두 오류 정정이에요. 단골은 <code>feature_importances_</code> 이름과 <code>sort_index</code> 를 <code>sort_values</code> 로 고치기예요. 분류에서는 <code>best_estimator_</code> 의 밑줄도 봐요(회귀 샘플은 GridSearchCV 가 없어 모델에서 바로 꺼내요).</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--m)">12</span><b>예측하고 점수 내기</b><span class="ar">AI 모델링 · Day 5</span></div>
-    <pre><code>from sklearn.metrics import accuracy_score
-y_pred = gs.best_estimator_.predict(X_valid)
-print(accuracy_score(y_valid, y_pred))</code></pre>
-    <p>분류는 accuracy_score(클수록 좋음), 회귀는 mean_absolute_error(작을수록 좋음)예요. 오류 정정 단골은 분류에서 accuracy → accuracy_score, pred → predict, 회귀에서 mean_absolute → mean_absolute_error, predict(X_train) → predict(X_valid) 예요.</p>
+    <pre><code><span>from sklearn.metrics import accuracy_score</span><span>y_pred = gs.best_estimator_.predict(X_valid)</span><span>print(accuracy_score(y_valid, y_pred))</span></code></pre>
+    <p>분류는 <code>accuracy_score</code>(클수록 좋음), 회귀는 <code>mean_absolute_error</code>(작을수록 좋음)예요. 오류 정정 단골은 분류에서 <code>accuracy</code> → <code>accuracy_score</code>, <code>pred</code> → <code>predict</code>, 회귀에서 <code>mean_absolute</code> → <code>mean_absolute_error</code>, <code>predict(X_train)</code> → <code>predict(X_valid)</code> 예요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--m)">13</span><b>딥러닝 모델</b><span class="ar">AI 모델링 · 딥러닝 · Day 6 · 12</span></div>
-    <pre><code>from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout
-from tensorflow.keras.callbacks import EarlyStopping
-model = Sequential([
-    Dense(64, activation=&#x27;relu&#x27;, input_dim=X_train.shape[1]),
-    Dropout(0.3),
-    Dense(32, activation=&#x27;relu&#x27;),
-    Dense(1, activation=&#x27;sigmoid&#x27;),
-])
-model.compile(optimizer=&#x27;adam&#x27;, loss=&#x27;binary_crossentropy&#x27;, metrics=[&#x27;accuracy&#x27;])
-es = EarlyStopping(monitor=&#x27;val_loss&#x27;, patience=5)
-history = model.fit(X_train, y_train, epochs=30, batch_size=128,
-                    validation_data=(X_valid, y_valid), callbacks=[es])</code></pre>
-    <p>마지막 층은 정답 모양에 맞춰요. 정답이 0·1 이면 Dense(1, activation='sigmoid'), 분류 샘플처럼 to_categorical 로 두 칸을 만들면 Dense(2, activation='sigmoid')예요. 회귀는 Dense(1, activation='linear'), loss='mean_squared_error', metrics=['mse'] 예요.</p>
+    <pre><code><span>from tensorflow.keras.models import Sequential</span><span>from tensorflow.keras.layers import Dense, Dropout</span><span>from tensorflow.keras.callbacks import EarlyStopping</span><span>model = Sequential([</span><span>    Dense(64, activation=&#x27;relu&#x27;,</span><span>          input_dim=X_train.shape[1]),</span><span>    Dropout(0.3),</span><span>    Dense(32, activation=&#x27;relu&#x27;),</span><span>    Dense(1, activation=&#x27;sigmoid&#x27;),</span><span>])</span><span>model.compile(optimizer=&#x27;adam&#x27;,</span><span>    loss=&#x27;binary_crossentropy&#x27;,</span><span>    metrics=[&#x27;accuracy&#x27;])</span><span>es = EarlyStopping(monitor=&#x27;val_loss&#x27;,</span><span>    patience=5)</span><span>history = model.fit(X_train, y_train,</span><span>    epochs=30, batch_size=128,</span><span>    validation_data=(X_valid, y_valid),</span><span>    callbacks=[es])</span></code></pre>
+    <p>마지막 층은 정답 모양에 맞춰요. 정답이 0·1 이면 <code>Dense(1, activation=&#x27;sigmoid&#x27;)</code>, 분류 샘플처럼 <code>to_categorical</code> 로 두 칸을 만들면 <code>Dense(2, activation=&#x27;sigmoid&#x27;)</code> 예요. 회귀는 <code>Dense(1, activation=&#x27;linear&#x27;)</code>, <code>loss=&#x27;mean_squared_error&#x27;</code>, <code>metrics=[&#x27;mse&#x27;]</code> 예요.</p>
   </article>
   <article class="q">
     <div class="h"><span class="n" style="background:var(--m)">14</span><b>학습 곡선 그리기</b><span class="ar">AI 모델링 · 딥러닝 · Day 6 · 12</span></div>
-    <pre><code>plt.plot(history.history[&#x27;accuracy&#x27;])
-plt.plot(history.history[&#x27;val_accuracy&#x27;])
-plt.title(&#x27;Accuracy&#x27;)
-plt.xlabel(&#x27;Epoch&#x27;)
-plt.ylabel(&#x27;Accuracy&#x27;)
-plt.legend([&#x27;accuracy&#x27;, &#x27;val_accuracy&#x27;])</code></pre>
-    <p>기록 이름은 compile 의 metrics 를 따라요. 분류는 accuracy·val_accuracy, 회귀는 mse·val_mse 예요. loss 곡선은 loss·val_loss 예요.</p>
+    <pre><code><span>plt.plot(history.history[&#x27;accuracy&#x27;])</span><span>plt.plot(history.history[&#x27;val_accuracy&#x27;])</span><span>plt.title(&#x27;Accuracy&#x27;)</span><span>plt.xlabel(&#x27;Epoch&#x27;)</span><span>plt.ylabel(&#x27;Accuracy&#x27;)</span><span>plt.legend([&#x27;accuracy&#x27;, &#x27;val_accuracy&#x27;])</span></code></pre>
+    <p>기록 이름은 compile 의 <code>metrics</code> 를 따라요. 분류는 <code>accuracy</code>·<code>val_accuracy</code>, 회귀는 <code>mse</code>·<code>val_mse</code> 예요. loss 곡선은 <code>loss</code>·<code>val_loss</code> 예요.</p>
   </article>
 
   <p class="note">숫자(test_size, random_state, patience 등)와 열 이름은 시험 문제가 정해 준 값을 그대로 쓰세요. 이 페이지는 개인이 만든 비공식 학습 자료이며 AICE 주최측과 무관합니다. 문항 내용은 옮기지 않고 함수만 정리했습니다. 개인 학습용으로 자유롭게 쓰세요. 자료의 재배포·판매는 허용하지 않습니다. <a href="index.html">실습 자료 홈</a></p>

@@ -10,8 +10,10 @@
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-:root{--xl:#1D6F42;--x:#B45309;--g:#4B5563;--bg:#FBFBF8;--ink:#1A2033;--muted:#59617A;--line:#E1E4EB;--card:#fff;--a:#2F6BFF;--p:#0E9F7A;--m:#7C4DEB}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151F;--ink:#ECEEF4;--muted:#A3A9BA;--line:#2A3040;--card:#1A1F2C;--xl:#4CC38A}}
+:root{--link:#2456D6;--xl:#1D6F42;--x:#B45309;--g:#4B5563;--bg:#FBFBF8;--ink:#1A2033;--muted:#59617A;--line:#E1E4EB;--card:#fff;--a:#2F6BFF;--p:#0E9F7A;--m:#7C4DEB}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151F;--ink:#ECEEF4;--muted:#A3A9BA;--line:#2A3040;--card:#1A1F2C;--xl:#4CC38A;--link:#8AB0FF}}
+:root[data-theme="dark"]{--bg:#12151F;--ink:#ECEEF4;--muted:#A3A9BA;--line:#2A3040;--card:#1A1F2C;--xl:#4CC38A;--link:#8AB0FF}
+a{color:var(--link)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font-family:Pretendard,system-ui,sans-serif;line-height:1.6;word-break:keep-all;overflow-wrap:break-word}
 main{max-width:980px;margin:0 auto;padding:48px 16px 80px}
@@ -38,9 +40,37 @@ tr:last-child td{border-bottom:0}
 .d{font-weight:900;white-space:nowrap}
 .tag{display:inline-block;font-size:12px;font-weight:800;color:#fff;border-radius:999px;padding:2px 10px;margin-right:6px}
 .soon{color:var(--muted);font-size:14px}
-td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white-space:nowrap}
+td a{color:var(--link);font-weight:700;text-decoration:none;margin-right:12px;white-space:nowrap}
 .note{margin-top:48px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
-@media (max-width:640px){table.days th:nth-child(3),table.days td:nth-child(3){display:none}table.days td a{display:block;margin:2px 0;white-space:normal;padding:6px 0}td.d{white-space:normal}td{overflow-wrap:anywhere}th,td{padding:12px 10px}}
+@media (max-width:640px){th,td{padding:12px 10px}td{overflow-wrap:anywhere}
+/* 휴대폰: 날짜별 표를 한 줄에 하나씩 카드로. 일차·영역 → 주제 → 버튼 두 개 */
+table.days thead{display:none}
+table.days,table.days tbody{display:block}
+table.days tr{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:6px 10px;padding:16px;border-bottom:1px solid var(--line)}
+table.days tr:last-child{border-bottom:0}
+table.days td{display:block;padding:0;border:0}
+table.days td.d{grid-row:1;white-space:nowrap;font-size:17px}
+table.days td:nth-child(3){grid-row:1;justify-self:start}
+table.days td:nth-child(2),table.days td:nth-child(4){grid-column:1/-1}
+table.days td:nth-child(4){display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+table.days td a{margin:0;padding:8px 12px;border:1px solid var(--line);border-radius:8px;white-space:nowrap;overflow-wrap:normal}
+/* 휴대폰: 공식 샘플 대응표도 카드로. 문항·형식·배우는 날 → 핵심 함수 */
+table.samples thead{display:none}
+table.samples,table.samples tbody{display:block}
+table.samples tr{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:4px 12px;padding:14px 16px;border-bottom:1px solid var(--line)}
+table.samples tr:last-child{border-bottom:0}
+table.samples td{display:block;padding:0;border:0;overflow-wrap:normal}
+table.samples td:nth-child(1){grid-row:1;font-weight:800;white-space:nowrap}table.samples td:nth-child(1)::after{content:"번"}
+table.samples td:nth-child(2){grid-row:1;color:var(--muted);font-size:14px}
+table.samples td:nth-child(4){grid-row:1;white-space:nowrap}
+table.samples td:nth-child(3){grid-column:1/-1;overflow-wrap:break-word}
+/* 휴대폰: 업데이트 기록은 날짜를 위에, 내용을 아래에 */
+table.log thead{display:none}
+table.log,table.log tbody,table.log tr,table.log td{display:block}
+table.log tr{padding:14px 16px;border-bottom:1px solid var(--line)}
+table.log tr:last-child{border-bottom:0}
+table.log td{padding:0;border:0}
+table.log td.d{margin-bottom:4px}}
 </style>
 </head>
 <body>
@@ -100,7 +130,7 @@ td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white
   <h2>공식 샘플문항 대응표</h2>
   <p>AICE 홈페이지에 공개된 Associate 샘플문항은 분류형과 회귀형 두 가지(각 14문항)입니다. 쓰는 함수가 어느 날 나오는지 정리했습니다. 문항 내용은 옮기지 않고 함수만 적었습니다. 코드 모양과 옵션까지 한 장으로 보려면 <a href="functions.html">14문항 함수 지도</a>를 여세요.</p>
   <h3 style="margin:18px 0 10px;font-size:18px">분류형</h3>
-  <table>
+  <table class="samples">
     <thead><tr><th>문항</th><th>형식</th><th>핵심 함수</th><th>배우는 날</th></tr></thead>
     <tbody>
       <tr><td>1~2</td><td>직접 작성</td><td>import 별칭, read_csv, head</td><td class="d">Day 1</td></tr>
@@ -115,7 +145,7 @@ td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white
     </tbody>
   </table>
   <h3 style="margin:22px 0 10px;font-size:18px">회귀형 (분류와 다른 문항만)</h3>
-  <table>
+  <table class="samples">
     <thead><tr><th>문항</th><th>형식</th><th>핵심 함수</th><th>배우는 날</th></tr></thead>
     <tbody>
       <tr><td>5</td><td>직접 작성</td><td>기준값으로 행 삭제(남길 조건), drop(axis=1, inplace=True)</td><td class="d">Day 2 · 12</td></tr>
@@ -128,10 +158,10 @@ td a{color:var(--a);font-weight:700;text-decoration:none;margin-right:12px;white
   </table>
 
   <h2 id="updates">업데이트 기록</h2>
-  <table>
+  <table class="log">
     <thead><tr><th>날짜</th><th>바뀐 내용</th></tr></thead>
     <tbody>
-      <tr><td class="d">2026-10-21</td><td>14문항 함수 지도 페이지 추가(공식 샘플 문항 순서대로 함수·옵션과 분류/회귀 차이, 코드는 연습 데이터로 실행 확인). 모의고사 3회(분류) 문제·해설 노트북과 데이터 추가. Day 14(시험 전날 점검)·Day 15(전체 총정리) 안내 추가.</td></tr>
+      <tr><td class="d">2026-10-21</td><td>14문항 함수 지도 페이지 추가(공식 샘플 문항 순서대로 함수·옵션과 분류/회귀 차이, 코드는 연습 데이터로 실행 확인). 모의고사 3회(분류) 문제·해설 노트북과 데이터 추가. Day 14(시험 전날 점검)·Day 15(전체 총정리) 안내 추가. 이 페이지: 휴대폰에서 날짜별 자료·샘플 대응표·업데이트 기록을 카드형으로 바꾸고, 다크 모드 링크 색 보완.</td></tr>
       <tr><td class="d">2026-10-20</td><td>전체 점검 반영. 노트북: 지시만 보고 풀 수 없던 칸(Day 3 cond, Day 5·6 import, Day 10 10번) 수정, 다시 실행하면 답이 틀어지는 칸에 안내 추가, Day 5 빈칸 문제 2개 추가, 출력 예측 칸이 정답과 같은 모양으로 보이게 수정, 강의 밖 문항 2개 교체. 암기카드: 휴대폰 화면 축소 수정, Day 7 카드 복습 포함, 첫 방문일 기준으로 날짜별 공개, 카드 11장 문구 보완. 이 페이지: 휴대폰 표 넘침·다크 모드 태그 수정, 코랩 사용법과 유튜브 링크 추가. 이용 조건(개인 학습용, 재배포·판매 금지)을 페이지·카드·노트북에 표시. 유튜브·암기카드·코랩 링크는 새 탭으로 열리고, 암기카드에 홈으로 가는 링크 추가. 모의고사 2회(회귀) 노트북, Day 12 회귀 암기카드 9장, 회귀 샘플 대응표 추가.</td></tr>
     </tbody>
   </table>

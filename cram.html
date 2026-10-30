@@ -116,7 +116,26 @@ td:first-child{font-weight:700}
     <b>Tab 자동완성 · Shift + Tab 도움말</b>
     <p><code>df.dro</code>까지 치고 <code>Tab</code>을 누르면 <code>drop</code>, <code>dropna</code>가 목록으로 떠요. 단, <b>이미 실행된 것만</b> 자동완성돼요. 목록에 안 뜨면 철자가 틀렸거나 앞 셀을 실행하지 않은 거예요.</p>
     <p>함수 괄호 안에 커서를 두고 <code>Shift + Tab</code>을 누르면 그 함수의 설명과 옵션 이름이 떠요. <code>test_size</code> 같은 이름이 기억 안 날 때 쓰세요.</p>
+    <p><b>Tab을 눌렀는데 빈칸만 들어가면</b>: 커서 바로 앞에 글자가 없어서 그래요(줄 맨 앞, 띄어쓰기 뒤). <code>df.dro</code>처럼 글자 바로 뒤에서 눌러요. 들어간 빈칸은 <code>Backspace</code>로 지워요. 줄 맨 앞에 빈칸이 남으면 <code>IndentationError</code>가 나요.</p>
+    <p><b>자동완성이 느리거나 안 뜨면</b>: 변수 이름·열 이름은 문제 문장이나 위 칸에서 <code>Ctrl+C</code> → <code>Ctrl+V</code>로 복사해 붙여요. 직접 치지 않으니 오타가 아예 안 생겨요.</p>
   </div>
+  <div class="tw"><table>
+    <thead><tr><th>단축키</th><th>하는 일</th></tr></thead>
+    <tbody>
+      <tr><td><code>Shift + Enter</code></td><td>이 칸 실행하고 다음 칸으로</td></tr>
+      <tr><td><code>Ctrl + Enter</code></td><td>실행하고 그 칸에 그대로 있기 (고쳐서 다시 실행할 때)</td></tr>
+      <tr><td><code>Tab</code> / <code>Shift + Tab</code></td><td>자동완성 / 함수 설명·옵션 이름 보기</td></tr>
+      <tr><td><code>Ctrl + A</code> → <code>Ctrl + /</code></td><td>칸 전체 선택 → 줄마다 <code>#</code> 주석 달기 (다시 누르면 풀림)</td></tr>
+      <tr><td><code>Ctrl + Z</code></td><td>방금 고친 것 되돌리기</td></tr>
+      <tr><td><code>Ctrl + S</code></td><td>저장. 중간중간 눌러요</td></tr>
+      <tr><td><code>Ctrl + F</code></td><td>찾기. 변수가 어디서 만들어졌는지 찾을 때</td></tr>
+      <tr><td><code>Shift + Home</code></td><td>커서부터 줄 맨 앞까지 선택 (한 줄 지우고 다시 쓸 때)</td></tr>
+      <tr><td><code>Esc</code> → <code>B</code> / <code>A</code></td><td>아래 / 위에 새 칸 추가. <code>df.head()</code>, <code>df.columns</code>로 잠깐 확인할 때</td></tr>
+      <tr><td>실수 복구: <code>Esc</code> → <code>Z</code></td><td><code>Esc</code> → <code>D</code> <code>D</code>로 칸이 지워졌을 때 되살리기</td></tr>
+      <tr><td>실수 복구: <code>Esc</code> → <code>Y</code></td><td><code>Esc</code> → <code>M</code>으로 글자 칸이 됐을 때(왼쪽 <code>[ ]</code>가 사라짐) 코드 칸으로 되돌리기</td></tr>
+    </tbody>
+  </table></div>
+  <p>시험 환경에 따라 조금 다를 수 있어요. 시작하자마자 확인용 칸에서 한 번씩 눌러 보세요.</p>
 
   <h2 id="python"><span class="n" style="background:var(--a)">3</span>파이썬 기본 일곱 가지</h2>
   <div class="q">
@@ -308,6 +327,9 @@ td:first-child{font-weight:700}
     <div class="rule"><b>재실행 뒤 확인할 것</b><p>결과를 보고 적은 답(가장 많은 값, 결측치 개수, 가장 중요한 변수)이 그대로인지 보세요. 딥러닝 점수는 실행할 때마다 조금씩 달라지는데 정상이에요. 빈칸 표시 <code>&lt; blank &gt;</code>가 남아 있으면 거기서 멈추니 먼저 다 채우세요.</p></div>
     <div class="rule"><b>넘길 땐 "점수는 포기, 변수는 살리기"</b><p>뒤 문제가 쓰는 변수(<code>data_temp</code>, <code>data_na</code>, <code>X_train</code>, <code>rf</code>, <code>history</code>)는 간단한 버전으로라도 꼭 만들어 두고 넘어가요. 예: 이상치 삭제가 막히면 <code>data_temp = data.drop(columns=['CustomerID'])</code>, GridSearch가 막히면 기본 옵션 모델 <code>rf = RandomForestClassifier(random_state=42)</code> + <code>fit</code>. 그 문제 점수는 잃어도 뒤 문제는 풀 수 있어요.</p></div>
     <div class="rule"><b>넘긴 빈칸은 주석으로</b><p><code>&lt; blank &gt;</code>가 남은 칸은 Restart &amp; Run All을 거기서 멈추게 해요. 넘긴 칸은 전체 선택(<code>Ctrl+A</code>) 후 <code>Ctrl+/</code>로 줄마다 <code>#</code>을 붙여 두면 건너뛰고 계속 실행돼요.</p></div>
+    <div class="rule"><b>다 못 풀어도 제출은 꼭</b><p>안 내는 것보다 훨씬 나아요. 채점이 위에서부터 실행하는 방식이면 에러 난 칸에서 멈춰서 <b>뒤에 잘 푼 문항까지 답이 안 만들어질 수 있어요.</b> 그래서 안 푼 칸·에러 난 칸은 주석 처리하고 내요.</p></div>
+    <div class="rule"><b>마지막 10분 순서</b><p>① 안 푼 칸·에러 난 칸: <code>Ctrl+A</code> → <code>Ctrl+/</code> ② 시간이 되면 처음부터 전체 실행해서 끝까지 에러 없는지 확인 ③ 임시저장 → 최종제출. 문제 칸과 답안 변수 이름은 지우지 말고 주석만 달아요.</p></div>
+    <div class="rule"><b>세션 재시작은 꼭 필요할 때만</b><p>재시작하면 만든 변수가 전부 사라져서 위에서부터 다시 실행해야 해요. 시간이 부족하면 재시작하지 말고 그대로 저장·제출해요. 제출·재시작 규칙은 시험 화면 안내가 우선이에요.</p></div>
     <div class="rule"><b>건너뛰어도 되는 칸 / 안 되는 칸</b><p>그래프(3·4번)와 스케일링(9번)은 넘겨도 뒤가 돌아가요. 파일 읽기(2번)와 데이터 나누기(8번)는 모양이 고정이라 꼭 풀어요.</p></div>
   </div>
 

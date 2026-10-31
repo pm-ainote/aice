@@ -311,6 +311,7 @@ td:first-child{font-weight:700}
     <p>LabelEncoder는 글자를 <b>알파벳 순 번호</b>로 바꿔요(<code>No</code>→0, <code>Yes</code>→1). 열은 그대로 하나예요. <code>get_dummies</code>는 열이 여러 개로 늘어나요.</p>
 <pre><code><span>from sklearn.preprocessing import LabelEncoder</span><span>le = LabelEncoder()</span><span>df['Churn'] = le.fit_transform(df['Churn'])</span></code></pre>
     <p>열이 여러 개면 셋째 줄만 열 이름을 바꿔서 반복해요. 셋째 줄은 <code>fillna</code>처럼 <b>같은 열 이름이 양쪽에</b> 와요.</p>
+    <p><b>"○○는 몇 번으로 바뀌었나" 확인</b>: <code>le.classes_</code>를 실행하면 <code>['C', 'Q', 'S']</code>처럼 나와요. <b>목록 안 순서가 번호</b>예요(C=0, Q=1, S=2). 한글은 가나다 순이에요. <code>df.head()</code> 결과 맨 왼쪽 0, 1, 2, 3…은 <b>행 번호(인덱스)</b>라서 바뀐 값이 아니에요. 바뀐 값은 그 열 안에 있고, 같은 글자는 모든 행에서 <b>같은 번호</b>여야 해요. 문제가 <code>map</code>이나 <code>replace</code>로 번호를 직접 정해 주면 그 번호를 따라요. 바꾸기 전에 따로 조회할 필요는 없어요. 바꾼 <b>바로 다음</b>에 <code>le.classes_</code>를 보세요. 바꾸는 칸을 두 번 실행하면 이미 숫자가 된 열을 다시 바꿔서 <code>le.classes_</code>가 <code>[0, 1, 2]</code>로 나와요. 그때는 데이터를 만든 위 칸부터 다시 실행해요.</p>
     <p><code>stratify=y</code>는 <code>train_test_split</code> 괄호 안에 넣는 옵션이에요. 학습용과 검증용에 정답 0과 1의 <b>비율을 똑같이</b> 맞춰 줘요. <b>분류 문제에만</b> 써요(가격 같은 숫자 맞히기에는 안 써요).</p>
 <pre><code><span>X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)</span></code></pre>
   </div>
@@ -426,6 +427,12 @@ td:first-child{font-weight:700}
   <div class="q">
     <b>원-핫 인코딩 결과가 True/False로 나와요</b>
     <p>최신 pandas는 1 대신 True, 0 대신 False로 표시해요(<code>bool</code>). 컴퓨터에게는 같은 뜻이니 신경 쓰지 않아도 돼요.</p>
+  </div>
+  <div class="q">
+    <b>"몇 개 행이 지워졌나" 답 쓰기</b>
+    <p>지우기 <b>전</b> 행 수와 <b>후</b> 행 수를 빼요. 결과를 새 이름에 담으면 원본이 남아 있어서 언제든 비교할 수 있어요.</p>
+<pre><code><span>df_temp = df[df['Fare'] &lt; 500]     <span class="cmt"># 500 이상 지우기 = 500 미만 남기기</span></span><span>print(len(df), len(df_temp))       <span class="cmt"># 전, 후 행 수</span></span><span>print(len(df) - len(df_temp))      <span class="cmt"># 지워진 행 수</span></span></code></pre>
+    <p>지우기 전에 바로 세는 방법도 있어요: <code>(df['Fare'] &gt;= 500).sum()</code>. 조건에 맞으면 True(=1)라서 더하면 개수가 돼요. 문제가 <code>df = df[...]</code>처럼 <b>같은 이름에 덮어쓰라고</b> 하면 지우기 전에 먼저 세어 두세요. 덮어쓰고 나면 전 행 수를 다시 볼 수 없어요. 숫자를 확인한 뒤 답안 줄에는 그 숫자를 적어요.</p>
   </div>
   <div class="q">
     <b>"지워라"는 "남겨라"로 뒤집어 쓰기</b>

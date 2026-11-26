@@ -99,7 +99,7 @@ td a[href*="youtu"]{background:#c4302b;border-color:#c4302b !important;color:#ff
 print(age)</pre><div class="res">21</div></div><div class="code"><pre>20 = age</pre><div class="res err">SyntaxError: cannot assign to literal here. Maybe you meant &#x27;==&#x27; instead of &#x27;=&#x27;?</div><div class="cnote">이름과 값의 자리를 바꾸면 에러가 나요.</div></div><h2><span class="no">04</span>변수 이름 세 가지 규칙</h2><figure><img src="img/l03_s04.webp" alt="이름 규칙: 숫자로 시작 ✕ · 띄어쓰기 대신 언더바 · 대문자와 소문자는 다른 글자"><figcaption>이름 규칙: 숫자로 시작 ✕ · 띄어쓰기 대신 언더바 · 대문자와 소문자는 다른 글자</figcaption></figure>
 <p>이름에는 영문자, 숫자, 언더바(<code>_</code>)를 사용할 수 있어요.</p>
 <h3>① 숫자로 시작할 수 없어요</h3><div class="code"><pre>1st = 3</pre><div class="res err">SyntaxError: invalid decimal literal</div><div class="cnote">SyntaxError 는 파이썬 문법에 맞지 않는다는 뜻이에요.</div></div>
-<h3>② 띄어쓰기 대신 언더바</h3><div class="code"><pre>my_age = 3</pre><div class="res none">(화면에 아무것도 안 나와요)</div></div>
+<h3>② 띄어쓰기 대신 언더바</h3><div class="code"><pre>my age = 3</pre><div class="res err">SyntaxError: invalid syntax</div><div class="cnote">이름 중간에 띄어쓰기를 넣으면 문법 에러예요.</div></div><div class="code"><pre>my_age = 3</pre><div class="res none">(화면에 아무것도 안 나와요)</div></div>
 <h3>③ 대문자와 소문자는 다른 글자</h3><div class="code"><pre>age = 20
 Age</pre><div class="res err">NameError: name &#x27;Age&#x27; is not defined</div><div class="cnote">소리는 같아도 파이썬은 서로 다른 이름으로 인식해요. NameError 는 그런 이름이 없다는 뜻이에요.</div></div><h2><span class="no">05</span>값의 종류, 자료형</h2><figure><img src="img/l03_s05.webp" alt="자료형 나무: 숫자(int · float) · 문자 · 참과 거짓"><figcaption>자료형 나무: 숫자(int · float) · 문자 · 참과 거짓</figcaption></figure>
 <p>상자에 들어가는 값의 종류를 <b>자료형</b>이라고 해요. 시험에서 자주 만나는 자료형은 숫자, 문자, 참과 거짓 세 가지예요.</p>
